@@ -4,7 +4,11 @@ import br.com.alura.agora.calculus.Sortable;
 
 public class Movie extends Title implements Sortable{
     private String Director;
-    
+     
+    public Movie(String name, int releaseYear) {
+        super(name, releaseYear);
+    }
+
     @Override
     public int getClassification(){
         return (int) catchMedia()/2 ;
@@ -22,7 +26,11 @@ public class Movie extends Title implements Sortable{
      */
     public void setDirector(String Director) {
         this.Director = Director;
+    }
 
+    @Override
+    public String toString() {
+        return "Movie: " + this.getName() + "(" + this.getRealeaseYear() + ")";
     }
 
 

@@ -5,10 +5,16 @@ public class Title {
     private String name;
     private int releaseYear;
     private boolean incluedPlan;
-     double sumEvaluations;
-     int totalEvaliations;
-     private int durationMinutes;
-     public void setName(String name){
+    double sumEvaluations;
+    int totalEvaliations;
+    private int durationMinutes;
+
+    public Title(String name, int releaseYear){
+        this.setName(name);
+        this.setReleaseYear(releaseYear);
+    }
+    
+    public void setName(String name){
          this.name = name;
      }
 

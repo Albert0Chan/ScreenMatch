@@ -1,5 +1,7 @@
+package br.com.alura.agora.principal;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 import br.com.alura.agora.calculus.CalculatorTime;
 import br.com.alura.agora.calculus.RecommendedFilter;
@@ -11,9 +13,7 @@ import br.com.alura.agora.models.Serie;
 public class Main {
     public static void main(String[] args){
         String sep = "------------------------";
-        Movie myMovie = new Movie();
-        myMovie.setName("Fast and Furious");
-        myMovie.setReleaseYear(2001);
+        Movie myMovie = new Movie("Fast and Furious", 2001);
         myMovie.setDurationMinutes(106);
         myMovie.showTechnicalData();
 
@@ -28,10 +28,8 @@ public class Main {
         
         System.out.println(sep);
 
-        Serie lost = new Serie();
-        lost.setName("lost");
+        Serie lost = new Serie("lost", 2004);
         lost.setSeasons(6);
-        lost.setReleaseYear(2004);
         lost.setEpPerSeasons(23);
         lost.setMinPerEp(300);
         lost.showTechnicalData();
@@ -39,17 +37,14 @@ public class Main {
         
         System.out.println(sep);
 
-        Movie avatar = new Movie();
-        avatar.setName("Avatar");
+        Movie avatar = new Movie("Avatar", 2009);
         avatar.setReleaseYear(2009);
         avatar.setDurationMinutes(240);
 
-        Anime OnePiece = new Anime();
-        OnePiece.setName("OnePiece");
+        Anime OnePiece = new Anime("One Piece", 2001);
         OnePiece.setMinPerEp(24);
         OnePiece.setEpPerSeasons(100);
         OnePiece.setSeasons(15);
-        OnePiece.setReleaseYear(2001);
         OnePiece.showTechnicalData();
         System.out.println("Duration in Minutes " + OnePiece.getName() + ": " + OnePiece.getDurationMinutes() + " minutes");
 
@@ -77,5 +72,23 @@ public class Main {
         System.out.println(sep);
         
         skinny.filters(ep);
+
+        var pauloMovie = new Movie("DogVille", 2016);
+        pauloMovie.setDurationMinutes(200);
+        pauloMovie.setName("DogVille");
+        pauloMovie.setReleaseYear(2016);
+        pauloMovie.evaluates(10);
+
+        System.out.println(sep);
+
+        ArrayList<Movie> movieList = new ArrayList<>();
+        movieList.add(pauloMovie);
+        movieList.add(myMovie);
+        movieList.add(avatar);
+        System.out.println("List size: " + movieList.size());
+        System.out.println("First movie: " + movieList.get(0).getName());
+        System.out.println(movieList);
+        System.out.println("toString of First movie: " + movieList.get(0).toString());
+
     }
 }

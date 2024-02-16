@@ -1,6 +1,10 @@
 package br.com.alura.agora.models;
 
 public class Serie extends Title {
+    public Serie(String name, int releaseYear) {
+        super(name, releaseYear);
+    }
+
     private int seasons;
     private int epPerSeasons;
     private boolean on;
@@ -73,6 +77,11 @@ public class Serie extends Title {
      */
     public void setMinPerEp(int minPerEp) {
         this.minPerEp = minPerEp;
+    }
+
+    @Override
+    public String toString(){
+        return "Serie: " +  this.getName() + "(" + getRealeaseYear() + ")";
     }
 
 }
