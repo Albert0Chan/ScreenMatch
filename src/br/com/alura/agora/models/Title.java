@@ -1,19 +1,36 @@
 package br.com.alura.agora.models;
 
-public class Title {
+import br.com.alura.agora.excessao.ErroDeConversaoDeAnoException;
+import com.google.gson.annotations.SerializedName;
 
+public class Title implements Comparable<Title>{
+    @SerializedName("Title")
     private String name;
+    @SerializedName("Year")
     private int releaseYear;
+
     private boolean incluedPlan;
     double sumEvaluations;
     int totalEvaliations;
+
     private int durationMinutes;
 
     public Title(String name, int releaseYear){
         this.setName(name);
         this.setReleaseYear(releaseYear);
     }
-    
+
+    public Title(TitleOmdb myTitleOmdb) {
+        this.name = myTitleOmdb.title();
+        if(myTitleOmdb.year().length() > 4){
+            throw new ErroDeConversaoDeAnoException("Não foi possível converter o ano, pois tem"+
+                                                    " mais de quatro caracteres");
+
+        }
+        this.releaseYear = Integer.parseInt(myTitleOmdb.year());
+        this.durationMinutes = Integer.parseInt(myTitleOmdb.runtime().substring(0, 2));
+    }
+
     public void setName(String name){
          this.name = name;
      }
@@ -63,4 +80,16 @@ public class Title {
         return sumEvaluations/totalEvaliations;
     }
 
+    @Override
+    public int compareTo(Title anotherTitle) {
+        return this.getName().compareTo(anotherTitle.getName());
+    }
+
+    @Override
+    public String toString() {
+        return  "(name = " + name +
+                ", releaseYear = " + releaseYear +
+                ", duration = " + durationMinutes +
+                ')';
+    }
 }
